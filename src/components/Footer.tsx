@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 text-center">
-      <p>&copy; 2023 My Tailwind Project</p>
+    <footer className="text-white p-4 text-center">
+      <p>&copy; 2025 Task Management Dashboard</p>
     </footer>
   );
 };

@@ -1,29 +1,50 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export const counterSlice = createSlice({
-  name: 'counter',
-  initialState: {
-    value: 0,
-  },
+export interface Task {
+  id: string;
+  taskName: string;
+  description: string;
+  status: 'To Do' | 'In Progress' | 'Done';
+  dueDate: string;
+}
+
+interface TaskState {
+  tasks: Task[];
+}
+
+const initialState: TaskState = {
+  tasks: [],
+};
+
+const taskSlice = createSlice({
+  name: 'task',
+  initialState,
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes.
-      // Also, no return statement is required from these functions.
-      state.value += 1
+    addTask: (state, action: PayloadAction<Omit<Task, 'id'>>) => {
+      const newTask: Task = {
+        id: Date.now().toString(),
+        ...action.payload,
+        status: 'To Do',
+      };
+      state.tasks.push(newTask);
     },
-    decrement: (state) => {
-      state.value -= 1
+    deleteTask: (state, action: PayloadAction<string>) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    updateTask: (state, action: PayloadAction<Task>) => {
+      const index = state.tasks.findIndex((task) => task.id === action.payload.id);
+      if (index !== -1) {
+        state.tasks[index] = action.payload;
+      }
+    },
+    updateTaskStatus: (state, action: PayloadAction<{ id: string; status: Task['status'] }>) => {
+      const task = state.tasks.find((task) => task.id === action.payload.id);
+      if (task) {
+        task.status = action.payload.status;
+      }
     },
   },
-})
+});
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-export default counterSlice.reducer
+export const { addTask, deleteTask, updateTask, updateTaskStatus } = taskSlice.actions;
+export default taskSlice.reducer;

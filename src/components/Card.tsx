@@ -1,13 +1,40 @@
+import { Task } from "../features/task/taskSlice";
+
 interface CardProps {
-  title: string;
-  description: string;
+  task: Task;
+  handleDragStart: (e: React.DragEvent<HTMLDivElement>, task: Task) => void;
+  onDeleteTask: (id: string) => void;
+  onUpdateTask: (task: Task) => void;
 }
 
-const Card: React.FC<CardProps> = ({ title, description }) => {
+const Card: React.FC<CardProps> = ({ task, handleDragStart, onDeleteTask, onUpdateTask }) => {
   return (
-    <div className="border rounded-lg shadow-lg p-4">
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <p>{description}</p>
+    <div
+      className="p-4 mb-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
+      style={{
+        background: 'linear-gradient(135deg, rgb(255, 169, 231), rgb(255, 200, 250))',
+        color: 'rgb(42, 45, 67)',
+      }}
+      draggable
+      onDragStart={(e) => handleDragStart(e, task)}
+    >
+      <h4 className="font-bold text-lg mb-2">{task.taskName}</h4>
+      <p className="text-sm mb-3">{task.description}</p>
+      <p className="text-xs text-gray-700 mb-4 italic">Due: {task.dueDate}</p>
+      <div className="flex justify-end space-x-3">
+        <button
+          className="px-3 py-1 text-sm font-semibold text-red-600 bg-red-100 rounded hover:bg-red-200 transition-colors"
+          onClick={() => onDeleteTask(task.id)}
+        >
+          Delete
+        </button>
+        <button
+          className="px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded hover:bg-blue-200 transition-colors"
+          onClick={() => onUpdateTask(task)}
+        >
+          Edit
+        </button>
+      </div>
     </div>
   );
 };
