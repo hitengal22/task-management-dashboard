@@ -18,7 +18,7 @@ This project is a **Task Management Dashboard** built using **React**, **TypeScr
 
 Ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
