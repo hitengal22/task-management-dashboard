@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# Task Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **Task Management Dashboard** built using **React**, **TypeScript**, and **Vite**. It allows users to manage tasks by adding, editing, deleting, filtering, and sorting them. The application uses **Redux Toolkit** for state management and **TailwindCSS** for styling.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add, edit, and delete tasks.
+- Filter tasks by status (To Do, In Progress, Done).
+- Sort tasks by due date.
+- Drag-and-drop functionality to update task status.
+- Persistent state using `redux-persist`.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Setup
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd task-management
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open the application in your browser at [http://localhost:5173](http://localhost:5173).
+
+### Build for Production
+
+To build the project for production, run:
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The output will be available in the `dist` directory.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Design Decisions
+
+### 1. **State Management**
+The application uses **Redux Toolkit** for managing the global state. The `taskSlice` in [`src/features/task/taskSlice.ts`](src/features/task/taskSlice.ts) handles all task-related actions, such as adding, deleting, updating, filtering, and sorting tasks. The state is persisted using `redux-persist` to ensure tasks are saved across page reloads.
+
+### 2. **Routing**
+The application uses **React Router** for navigation. Routes are defined in [`src/main.tsx`](src/main.tsx), including:
+- `/` for the task list.
+- `/task-add` for adding a new task.
+- `/task-edit/:id` for editing an existing task.
+
+### 3. **Styling**
+The project uses **TailwindCSS** for styling. Custom utility classes and themes are defined in [`src/index.css`](src/index.css). This approach ensures a consistent and responsive design.
+
+### 4. **Component Structure**
+The project follows a modular component structure:
+- **Reusable Components**: Components like `Button`, `Input`, and `Label` are designed to be reusable across the application.
+- **Feature-Specific Components**: Components like `AddTask`, `EditTask`, and `TaskList` are specific to task management functionality.
+
+### 5. **Drag-and-Drop**
+The drag-and-drop functionality for updating task status is implemented in [`src/components/TaskList/TaskList.tsx`](src/components/TaskList/TaskList.tsx). It uses native HTML5 drag-and-drop APIs for simplicity and performance.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
