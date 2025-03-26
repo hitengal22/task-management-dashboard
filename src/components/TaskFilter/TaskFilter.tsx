@@ -10,12 +10,7 @@ const TaskFilter: React.FC<TaskFilterProps> = ({ onFilter, onSort }) => {
     return (
         <div className="flex justify-between items-center mb-4">
             <select
-                className="p-2 border rounded"
-                style={{
-                    backgroundColor: 'rgb(255, 169, 231)',
-                    color: 'rgb(42, 45, 67)',
-                    borderColor: 'rgb(127, 44, 203)',
-                }}
+                className="p-2 border rounded bg-lavender-pink text-space-cadet border-primary"
                 onChange={(e) => onFilter(e.target.value)}
             >
                 <option value="">All</option>

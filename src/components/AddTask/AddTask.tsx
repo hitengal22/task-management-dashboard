@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../features/task/taskSlice';
 import Button from '../Button';
+import Label from '../Label';
+import Input from '../Input';
 
 interface FormData {
     taskName: string;
@@ -54,21 +56,20 @@ const AddTask: React.FC = () => {
                         </div>
                     )}
                     <div>
-                        <label className="block text-sm font-medium text-space-cadet mb-1">
+                        <Label>
                             Task Name:
-                        </label>
-                        <input
+                        </Label>
+                        <Input
                             type="text"
                             name="taskName"
                             value={formData.taskName}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-space-cadet"
+                            handleChange={handleChange}
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-space-cadet mb-1">
+                        <Label>
                             Description:
-                        </label>
+                        </Label>
                         <textarea
                             name="description"
                             value={formData.description}
@@ -77,20 +78,19 @@ const AddTask: React.FC = () => {
                         ></textarea>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-space-cadet mb-1">
+                        <Label>
                             Due Date:
-                        </label>
-                        <input
+                        </Label>
+                        <Input
                             type="date"
                             name="dueDate"
                             value={formData.dueDate}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-space-cadet"
+                            handleChange={handleChange}
                         />
                     </div>
                     <Button
                         type="submit"
-                        className="w-full" 
+                        className="w-full"
                     >
                         Add Task
                     </Button>

@@ -12,11 +12,7 @@ const Card: React.FC<CardProps> = ({ task, handleDragStart, onDeleteTask }) => {
 
   return (
     <div
-      className="p-4 mb-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
-      style={{
-        background: 'linear-gradient(135deg, rgb(255, 169, 231), rgb(255, 200, 250))',
-        color: 'rgb(42, 45, 67)',
-      }}
+      className="p-4 mb-4 rounded-lg shadow-md transition-all duration-300 bg-linear-135 from-lavender-pink to-[rgb(255_200_250)] text-space-cadet hover:shadow-xl hover:scale-105"
       draggable
       onDragStart={(e) => handleDragStart(e, task)}
     >

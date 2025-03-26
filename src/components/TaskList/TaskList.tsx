@@ -27,10 +27,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
       {['To Do', 'In Progress', 'Done'].map((status) => (
         <div
           key={status}
-          className="p-6 border rounded-lg shadow-lg transition-all duration-300 bg-secondary text-white"
-          style={{
-            background: 'linear-gradient(135deg, rgb(65, 67, 97), rgb(85, 87, 117))',
-          }}
+          className="p-6 border bg-linear-135 from-delft-blue to-[rgb(85_87_117))] rounded-lg shadow-lg transition-all duration-300 bg-secondary text-white"
           onDragOver={allowDrop}
           onDrop={(e) => handleDrop(e, status)}
           onDragEnter={(e) =>

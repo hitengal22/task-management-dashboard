@@ -1,7 +1,6 @@
-import './App.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from './app/store'
-import { deleteTask, Task, updateTask, filterTasks, sortTasks } from './features/task/taskSlice'
+import { deleteTask, filterTasks, sortTasks } from './features/task/taskSlice'
 import TaskList from './components/TaskList/TaskList'
 import TaskFilter from './components/TaskFilter/TaskFilter'
 import Footer from './components/Footer'
