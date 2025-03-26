@@ -11,6 +11,7 @@ import {
 import store from './app/store.ts'
 import Header from './components/Header.tsx'
 import AddTask from './components/AddTask/AddTask'
+import EditTask from './components/EditTask/EditTask.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/task-add" element={<AddTask />} />
+          <Route path="/task-edit/:id" element={<EditTask />} />
         </Routes>
       </Router>
       </Provider>

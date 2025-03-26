@@ -1,13 +1,15 @@
 import { Task } from "../features/task/taskSlice";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps {
   task: Task;
   handleDragStart: (e: React.DragEvent<HTMLDivElement>, task: Task) => void;
   onDeleteTask: (id: string) => void;
-  onUpdateTask: (task: Task) => void;
 }
 
-const Card: React.FC<CardProps> = ({ task, handleDragStart, onDeleteTask, onUpdateTask }) => {
+const Card: React.FC<CardProps> = ({ task, handleDragStart, onDeleteTask }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       className="p-4 mb-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
@@ -30,7 +32,7 @@ const Card: React.FC<CardProps> = ({ task, handleDragStart, onDeleteTask, onUpda
         </button>
         <button
           className="px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded hover:bg-blue-200 transition-colors"
-          onClick={() => onUpdateTask(task)}
+          onClick={() => navigate(`/task-edit/${task.id}`)}
         >
           Edit
         </button>

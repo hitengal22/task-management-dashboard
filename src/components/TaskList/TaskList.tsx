@@ -6,10 +6,9 @@ import Card from '../Card';
 interface TaskListProps {
   tasks: Task[];
   onDeleteTask: (id: string) => void;
-  onUpdateTask: (task: Task) => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onUpdateTask }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask }) => {
   const dispatch = useDispatch();
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, task: Task) => {
@@ -50,7 +49,6 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onUpdateTask }
                 task={task}
                 handleDragStart={handleDragStart}
                 onDeleteTask={onDeleteTask}
-                onUpdateTask={onUpdateTask}
               />
             ))}
         </div>

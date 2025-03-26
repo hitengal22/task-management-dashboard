@@ -10,6 +10,7 @@ export interface Task {
 
 interface TaskState {
   tasks: Task[];
+  filteredTasks?: Task[];
 }
 
 const initialState: TaskState = {
@@ -43,8 +44,24 @@ const taskSlice = createSlice({
         task.status = action.payload.status;
       }
     },
+    filterTasks: (state, action: PayloadAction<string>) => {
+      if (action.payload === '') {
+        state.filteredTasks = undefined;
+      } else {
+        state.filteredTasks = state.tasks.filter(task => task.status === action.payload);
+      }
+    },
+    sortTasks: (state) => {
+      const tasksToSort = state.filteredTasks || state.tasks;
+      tasksToSort.sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+      if (state.filteredTasks) {
+        state.filteredTasks = tasksToSort;
+      } else {
+        state.tasks = tasksToSort;
+      }
+    },
   },
 });
 
-export const { addTask, deleteTask, updateTask, updateTaskStatus } = taskSlice.actions;
+export const { addTask, deleteTask, updateTask, updateTaskStatus, filterTasks, sortTasks } = taskSlice.actions;
 export default taskSlice.reducer;
